@@ -1,0 +1,70 @@
+<html>
+<head>
+<%= stylesheet_link_tag "style" %>
+
+</head>
+<div id="container">
+<div id="header">
+<header>
+<h1>Welcome to Chitchat
+......................................................................................
+<img src="/images/Communication.jpeg" >
+</h1>
+</header>
+</div>
+<div id="body">
+<body>
+<br>
+
+
+
+
+
+
+<h2>Filter by Friend</h2>
+<table align="center" >
+<tr>
+<th>
+Recieved Messages
+</th>
+<th>
+Sent Messages
+</th>
+</tr>
+<tr>
+<td>
+<% @u.each do |u|%>
+ <b>Sender:</b><%=u.sender_id%> <b>Time: </b><%=u.created_at%><br>
+       Message:<%=u.body%><br><br>
+<%end%>
+</td>
+<td>	
+<% @f.each do |f|%>   
+ <b>Recipient:</b><%=f.recipient_id%> <b>Time: </b><%=f.created_at%><br>
+       Message:<%=f.body%><br><br>   
+<%end%> 
+</td>
+
+<tr>
+</table>
+
+<h4>Send a message<h4>
+<%= form_for :message,url:messages_path do |f|%>
+	    <%=f.hidden_field :sender_id,:value=>@user.id%>
+		<%=f.hidden_field :recipient_id,:value=>@friend.id%>
+		<%=f.text_area :body%>
+        <%=f.submit "Send Message"%>
+<% end %>
+
+ 
+ 
+ 
+ 
+ 
+ </body>
+ </div>
+
+ 
+ 
+ 
+</html>
